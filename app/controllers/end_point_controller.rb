@@ -11,7 +11,7 @@ class EndPointController < ApplicationController
     # Start with a base query that joins the companies and flights tables
     query = Company.joins(:flights)
 
-    render json: query.to_json
+     render json: query.all.to_json
 
     # Check and filter by companyName if present
     query = query.where('companies.company_name = ?', params[:param1]) if params[:param1].present?
