@@ -1,0 +1,23 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: airport_ # Promenite ime baze podataka ovde
+  username: postgres # Dodajte korisničko ime ovde
+  password: admin # Dodajte lozinku ovde
+  pool: 5
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: airport_ # Promenite ime baze podataka ovde
+  username: postgres # Dodajte korisničko ime ovde
+  password: admin # Dodajte lozinku ovde
+  pool: 5
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: airport_ # Promenite ime baze podataka ovde
+  username: postgres # Dodajte korisničko ime ovde
+  password: admin # Dodajte lozinku ovde
+  pool: 5

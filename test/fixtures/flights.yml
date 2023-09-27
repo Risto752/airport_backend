@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  from: MyString
+  to: MyString
+  departure_date: 2023-09-26 08:52:31
+  business_price: 9.99
+  economic_price: 9.99
+  flight_duration: 1
+  stops: MyString
+
+two:
+  from: MyString
+  to: MyString
+  departure_date: 2023-09-26 08:52:31
+  business_price: 9.99
+  economic_price: 9.99
+  flight_duration: 1
+  stops: MyString
