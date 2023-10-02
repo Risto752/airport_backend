@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_26_065300) do
+ActiveRecord::Schema.define(version: 2023_10_02_151538) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "airports", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "companies", force: :cascade do |t|
     t.string "title"
@@ -22,8 +28,8 @@ ActiveRecord::Schema.define(version: 2023_09_26_065300) do
   end
 
   create_table "flights", force: :cascade do |t|
-    t.string "from"
-    t.string "to"
+    t.integer "from"
+    t.integer "to"
     t.datetime "departure_date"
     t.decimal "business_price"
     t.decimal "economic_price"
@@ -35,5 +41,7 @@ ActiveRecord::Schema.define(version: 2023_09_26_065300) do
     t.index ["company_id"], name: "index_flights_on_company_id"
   end
 
+  add_foreign_key "flights", "airports", column: "from"
+  add_foreign_key "flights", "airports", column: "to"
   add_foreign_key "flights", "companies"
 end
