@@ -39,57 +39,13 @@ class FlightsController < ApplicationController
       query = query.where('flights.economic_price >= ? AND flights.economic_price <= ?', 
                           permitted_params[:economic_min], permitted_params[:economic_max])
 
-      data_collection = []                     
+      @flights = query.all
+      render json: @flights, each_serializer: FlightSerializer
 
- 
-      query.each do |flight|
-
-        flight_data = {
-        id: flight.id,
-        from: {
-          name: Airport.find(flight.from).name
-        },
-        to: {
-          name: Airport.find(flight.to).name
-        },
-        departure_date: flight.departure_date,
-        business_price: flight.business_price,
-        economic_price: flight.economic_price,
-        flight_duration: flight.flight_duration,
-        stops: flight.stops
-      }
-      data_collection << flight_data
-
-      end
-      
-     render json: data_collection
       
     else
-      renderOutput
+      @flights = Flight.all
+    render json: @flights, each_serializer: FlightSerializer
     end
-  end
-
-  def renderOutput
-    flights_with_airports = Flight.includes(:from_airport, :to_airport).all
-    data_collection = []
-
-    flights_with_airports.each do |flight|
-      flight_data = {
-        id: flight.id,
-        from: {
-          name: flight.from_airport.name
-        },
-        to: {
-          name: flight.to_airport.name
-        },
-        departure_date: flight.departure_date,
-        business_price: flight.business_price,
-        economic_price: flight.economic_price,
-        flight_duration: flight.flight_duration,
-        stops: flight.stops
-      }
-      data_collection << flight_data
-    end
-    render json: data_collection
   end
 end
