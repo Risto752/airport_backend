@@ -51,20 +51,8 @@ class FlightsController < ApplicationController
   end
 
   def create
-    flight_params = params.permit(
-      flight: %i[
-        from
-        to
-        departure_date
-        business_price
-        economic_price
-        flight_duration
-        stops
-        company_id
-      ]
-    )
-
-    @flight = Flight.new(flight_params[:flight])
+    
+    @flight = Flight.new(flight_params)
 
     if @flight.save
       render json: @flight, status: :created
